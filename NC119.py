@@ -15,17 +15,23 @@ class Solution:
                 q.put((-j,j))
         return list(map(lambda x:x[1],q.queue))
 
-    # 快速排序分区法
+    # 分区法:利用快速排序中的分区函数
     def getLeastNumbers1(self,arr,k):
-        m=self.part(arr,0,len(arr)-1)
-        while True:
-            if m+1>k:
-                m=self.part(arr,0,m)
-            elif m+1<k:
-                m=self.part(arr,m+1,len(arr)-1)
+        length = len(arr)
+        l = 0
+        r = length - 1
+        if k > length or k <= 0:
+            return []
+        if k == length:
+            return sorted(arr)
+        while l < r:
+            m = self.part(arr, l, r)
+            if m + 1 > k:
+                r = m
+            elif m + 1 < k:
+                l = m + 1
             else:
-                break
-        return arr[0:m+1]
+                return sorted(arr[0:m + 1])
 
     def part(self, arr, i, j):
         pivot = arr[i]
@@ -42,7 +48,7 @@ class Solution:
 
 
 if __name__ == '__main__':
-    arr=[1,3,3,0,4,2,5]
-    r=Solution().getLeastNumbers1(arr,4)
+    arr=[4,5,1,6,2,7,3,8]
+    r=Solution().getLeastNumbers1(arr,8)
     print(r)
 
