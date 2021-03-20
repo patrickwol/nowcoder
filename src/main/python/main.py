@@ -1,7 +1,5 @@
-# This is a sample Python script.
-
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+import sys
+import queue
 
 
 def print_hi(name):
@@ -11,7 +9,11 @@ def print_hi(name):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    age = 10
-    name = "kate"
-    print(f"Ok,your name is {age}, and your age is {name}.")
-    print("Ok,your name is {0}, and your age is {1}.".format(age, name))
+    q=queue.PriorityQueue()
+    q.put((-3,3))
+    q.put((-2,2))
+    q.put((-5,5))
+    print(q.queue)
+    r=map(lambda x:x[1],q.queue)
+    print(list(r))
+
